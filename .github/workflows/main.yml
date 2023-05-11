@@ -3,29 +3,11 @@ name: Cypress Tests
 on: push
 
 jobs:
-  chrome:
+  cypress-test:
     runs-on: ubuntu-22.04
-    name: E2E on Chrome
     steps:
       - uses: actions/checkout@v3
       - uses: cypress-io/github-action@v5
         with:
           browser: chrome
-          
-  firefox:
-    runs-on: ubuntu-22.04
-    name: E2E on Firefox
-    steps:
-      - uses: actions/checkout@v3
-      - uses: cypress-io/github-action@v5
-        with:
-          browser: firefox
-          
-  edge:
-      runs-on: ubuntu-22.04
-      name: E2E on Edge
-      steps:
-        - uses: actions/checkout@v3
-        - uses: cypress-io/github-action@v5
-          with:
-            browser: edge
+      - run: "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
