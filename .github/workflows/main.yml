@@ -24,11 +24,21 @@ jobs:
           browser: firefox
           
   edge:
-      runs-on: ubuntu-22.04
-      name: E2E on Edge
-      steps:
-        - uses: actions/checkout@v3
-        - uses: cypress-io/github-action@v5
-          with:
-            command: npm run e2e:headless
-            browser: edge
+    runs-on: ubuntu-22.04
+    name: E2E on Edge
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          command: npm run e2e:headless
+          browser: edge
+            
+  safari:
+    runs-on: ubuntu-22.04
+    name: E2E on Safari
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          command: npm run e2e:headless
+          browser: safari
