@@ -6,6 +6,7 @@ export default function About() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1>About Page</h1>
+        <h1>About Page</h1>
         <p className={styles.description}>
           <Link href="/">&larr; Go Back</Link>
         </p>
