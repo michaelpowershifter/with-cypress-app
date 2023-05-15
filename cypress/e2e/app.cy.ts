@@ -31,6 +31,33 @@ describe('Navigation', () => {
     hiddenDiv.should('be.visible')
   })
 
+  it('should input text into a text box and read that text', () => {
+    cy.visit('http://localhost:3000/about')
+
+    cy.get('input[type="text"]')
+      .should('have.value', "")
+      .type("This is a test")
+      .should('have.value', "This is a test")
+      .type("This is another test{enter}")
+      .should('have.value', "This is a testThis is another test")
+  })
+
+  it('should only show drop down contents after the drop down button is clicked', () => {
+    cy.visit('http://localhost:3000/about')
+
+    cy.get('a').contains("Action").should('not.exist')
+    cy.get('a').contains("Another action").should('not.exist')
+    cy.get('a').contains("Something else").should('not.exist')
+
+    cy.get('button[id=dropdown-basic-button]')
+      .should('have.text', "Dropdown button")
+      .click()
+
+    cy.get('a').contains("Action").should('exist').click()
+    cy.get('a').contains("Another action").should('exist').click()
+    cy.get('a').contains("Something else").should('exist').click()
+  })
+
   it('should navigate back to the home page', () => {
     cy.visit('http://localhost:3000/about')
 
